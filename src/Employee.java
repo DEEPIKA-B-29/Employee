@@ -4,7 +4,9 @@ public class Employee {
     //int halfDay=4;
     int partTime=8;
     int hourlyWage=20;
+    int monthlySalary;
     int dailySalary;
+    int workingDay=20;
     public void calculateAttendance(){
         if(((Math.random()*100)%3)==0){
             dailyAttendance=0;
@@ -22,12 +24,16 @@ public class Employee {
         switch(dailyAttendance){
             case 1:{
                 dailySalary=hourlyWage*workPerDay;
-                System.out.println(dailySalary);
+                System.out.println("Daily salary: "+dailySalary);
+                monthlySalary=dailySalary*workingDay;
+                System.out.println("Monthly salary: "+monthlySalary);
                 break;
             }
             case 2:{
                 dailySalary=partTime*hourlyWage;
-                System.out.println(dailySalary);
+                System.out.println("Daily salary: "+dailySalary);
+                monthlySalary=dailySalary*workingDay;
+                System.out.println("Monthly salary: "+monthlySalary);
                 break;
             }
             default:System.out.println("No pay");
