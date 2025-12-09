@@ -19,15 +19,18 @@ public class Employee {
         }
     }
     public void dailyWage(){
-        if(dailyAttendance==1){
-            dailySalary=hourlyWage*workPerDay;
-            System.out.println(dailySalary);
-        }
-        else if(dailyAttendance==2){
-            dailySalary=partTime*hourlyWage;
-            System.out.println(dailySalary);
-        }else{
-            System.out.println("No pay");
+        switch(dailyAttendance){
+            case 1:{
+                dailySalary=hourlyWage*workPerDay;
+                System.out.println(dailySalary);
+                break;
+            }
+            case 2:{
+                dailySalary=partTime*hourlyWage;
+                System.out.println(dailySalary);
+                break;
+            }
+            default:System.out.println("No pay");
         }
     }
 }
