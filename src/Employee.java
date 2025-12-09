@@ -1,16 +1,15 @@
 public class Employee {
-    int dailyAttendance;
-    int workPerDay = 8;
-    int partTime = 8;
-    int hourlyWage = 20;
-    int monthlySalary;
-    int dailySalary;
-    int workingDay = 20;
+    static int dailyAttendance;
+    static int workPerDay = 8;
+    static int partTime = 4;
+    static int hourlyWage = 20;
+    static int monthlySalary;
+    static int dailySalary;
 
-    int totalHours = 0;
-    int totalDays = 0;
+    static int totalHours = 0;
+    static int totalDays = 0;
 
-    public void calculateAttendance(){
+    public static void calculateAttendance(){
         if(((Math.random()*100)%3)==0){
             dailyAttendance = 0;
             System.out.println("Absent");
@@ -23,7 +22,7 @@ public class Employee {
         }
     }
 
-    public void dailyWage(){
+    public static void computeWage(){
 
         while(totalDays < 20 && totalHours < 100){
             totalDays++;
@@ -32,17 +31,13 @@ public class Employee {
             switch(dailyAttendance){
                 case 1:{
                     dailySalary = hourlyWage * workPerDay;
-                    System.out.println("Daily salary: " + dailySalary);
-
-                    totalHours += workPerDay;
+                    totalHours += partTime;
                     monthlySalary += dailySalary;
                     break;
                 }
                 case 2:{
                     dailySalary = partTime * hourlyWage;
-                    System.out.println("Daily salary: " + dailySalary);
-
-                    totalHours += partTime;
+                    totalHours += workPerDay;
                     monthlySalary += dailySalary;
                     break;
                 }
@@ -54,6 +49,7 @@ public class Employee {
                 break;
             }
 
+            System.out.println("Daily salary: " + dailySalary);
             System.out.println("Total hours so far: " + totalHours);
         }
         System.out.println("Total Days Worked: " + totalDays);
