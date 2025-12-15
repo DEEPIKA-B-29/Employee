@@ -1,15 +1,12 @@
 public class Employee {
-    static int dailyAttendance;
-    static int workPerDay = 8;
-    static int partTime = 4;
-    static int hourlyWage = 20;
-    static int monthlySalary;
-    static int dailySalary;
+    int dailyAttendance;
+    int workPerDay = 8;
+    int partTime = 4;
+    int dailySalary;
 
-    static int totalHours = 0;
-    static int totalDays = 0;
 
-    public static void calculateAttendance(){
+
+    public void calculateAttendance(){
         if(((Math.random()*100)%3)==0){
             dailyAttendance = 0;
             System.out.println("Absent");
@@ -22,21 +19,26 @@ public class Employee {
         }
     }
 
-    public static void computeWage(){
+    public void computeWage(Company company){
+        int totalDays=0;
+        int totalHours = 0;
+        int monthlySalary = 0;
+        System.out.println("\n"+company.getCompanyName());
 
-        while(totalDays < 20 && totalHours < 100){
+        while(totalDays<company.getWorkingDays() && totalHours < company.getWorkingHoursPerMonth()){
             totalDays++;
             System.out.println("\nDay: " + totalDays);
             calculateAttendance();
+
             switch(dailyAttendance){
                 case 1:{
-                    dailySalary = hourlyWage * workPerDay;
+                    dailySalary = company.getWagePerHour() * partTime;
                     totalHours += partTime;
                     monthlySalary += dailySalary;
                     break;
                 }
                 case 2:{
-                    dailySalary = partTime * hourlyWage;
+                    dailySalary = workPerDay * company.getWagePerHour();
                     totalHours += workPerDay;
                     monthlySalary += dailySalary;
                     break;
@@ -44,8 +46,8 @@ public class Employee {
                 default:
                     System.out.println("No pay");
             }
-            if(totalHours > 100){
-                totalHours = 100;
+            if(totalHours > company.getWorkingHoursPerMonth()){
+                totalHours = company.getWorkingHoursPerMonth();
                 break;
             }
 
